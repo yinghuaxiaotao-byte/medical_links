@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JAPAN MEDICAL INC. | Premium Healthcare in Japan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue-dark:   #1a3a5c;
+      --blue-mid:    #2a6496;
+      --blue-light:  #4a9fd4;
+      --blue-pale:   #d6eaf8;
+      --blue-ultra:  #eaf4fb;
+      --white:       #ffffff;
+      --gray-light:  #f5f7fa;
+      --gray-mid:    #8a9bb0;
+      --gray-dark:   #3d4f63;
+      --text-main:   #1e2d3d;
+      --nav-height:  80px;
+      --ease:        cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Cormorant Garamond', 'Noto Sans JP', serif; color: var(--text-main); background: var(--white); overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* NAV */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-height); z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      background: transparent;
+      transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease), height 0.4s var(--ease);
+    }
+    #navbar.scrolled { background: rgba(255,255,255,0.97); box-shadow: 0 2px 30px rgba(26,58,92,0.1); height: 64px; }
+    /* Logo: recommended height 52px / 40px when scrolled */
+    .nav-logo img { height: 52px; width: auto; transition: height 0.4s var(--ease); }
+    #navbar.scrolled .nav-logo img { height: 40px; }
+    .nav-right { display: flex; align-items: center; gap: 8px; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; letter-spacing: 0.08em; color: var(--white); position: relative; padding-bottom: 4px; transition: color 0.3s; }
+    #navbar.scrolled .nav-links a { color: var(--blue-dark); }
+    .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--blue-light); transition: width 0.3s var(--ease); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-lang { display: flex; border: 1px solid rgba(255,255,255,0.5); border-radius: 4px; overflow: hidden; margin-left: 20px; }
+    #navbar.scrolled .nav-lang { border-color: var(--blue-light); }
+    .nav-lang a { font-size: 0.78rem; letter-spacing: 0.04em; padding: 6px 12px; color: rgba(255,255,255,0.85); font-weight: 500; transition: background 0.3s, color 0.3s; border-right: 1px solid rgba(255,255,255,0.3); }
+    .nav-lang a:last-child { border-right: none; }
+    #navbar.scrolled .nav-lang a { color: var(--blue-mid); border-right-color: var(--blue-pale); }
+    .nav-lang a:hover, .nav-lang a.active { background: var(--blue-mid); color: var(--white) !important; }
+    .nav-cta-btn { margin-left: 12px; background: var(--blue-mid); color: var(--white); padding: 10px 22px; border-radius: 4px; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.06em; white-space: nowrap; transition: background 0.3s; }
+    .nav-cta-btn:hover { background: var(--blue-dark); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; z-index: 1100; }
+    .hamburger span { display: block; width: 26px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
+    #navbar.scrolled .hamburger span { background: var(--blue-dark); }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { position: fixed; inset: 0; background: var(--blue-dark); z-index: 1050; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; opacity: 0; pointer-events: none; transition: opacity 0.35s; }
+    .mobile-menu.open { opacity: 1; pointer-events: all; }
+    .mobile-menu a { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--white); letter-spacing: 0.1em; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.15); width: 260px; text-align: center; }
+    .mobile-lang { display: flex; gap: 16px; margin-top: 12px; }
+    .mobile-lang a { font-size: 0.9rem; color: rgba(255,255,255,0.7); border: none !important; width: auto !important; }
+    .fixed-footer-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 900; background: var(--blue-dark); padding: 10px 16px; gap: 10px; }
+    .fixed-footer-cta a { flex: 1; text-align: center; padding: 12px 0; font-size: 0.88rem; font-weight: 700; border-radius: 4px; letter-spacing: 0.05em; }
+    .cta-contact { background: var(--blue-mid); color: var(--white); }
+    .cta-tel { background: var(--white); color: var(--blue-dark); border: 1.5px solid var(--blue-mid); }
+
+    /* HERO
+       Slide image recommended size: 1920 × 900 px (JPG/PNG/WebP)
+       To replace: change background-image url() in each .slide-bg */
+    #hero { position: relative; width: 100%; height: 100vh; min-height: 580px; overflow: hidden; }
+    .slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.9s cubic-bezier(0.77,0,0.175,1); }
+    .slide { min-width: 100%; height: 100%; position: relative; }
+    .slide-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transform: scale(1.06); transition: transform 8s ease-out; }
+    .slide.active .slide-bg { transform: scale(1); }
+    .slide-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(26,58,92,0.78) 0%, rgba(26,58,92,0.45) 55%, rgba(74,159,212,0.2) 100%); }
+    .slide-content { position: absolute; top: 50%; left: 8%; transform: translateY(-42%); color: var(--white); max-width: 640px; opacity: 0; transition: opacity 0.7s 0.4s, transform 0.7s 0.4s var(--ease); }
+    .slide.active .slide-content { opacity: 1; transform: translateY(-50%); }
+    .slide-eyebrow { font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--blue-pale); margin-bottom: 18px; }
+    .slide-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5vw, 4.4rem); font-weight: 300; line-height: 1.18; margin-bottom: 20px; letter-spacing: 0.02em; }
+    .slide-sub { font-family: 'Noto Sans JP', sans-serif; font-size: clamp(0.88rem, 1.3vw, 1rem); font-weight: 300; line-height: 1.9; color: rgba(255,255,255,0.87); margin-bottom: 38px; }
+    .slide-btn { display: inline-block; padding: 14px 38px; border: 1.5px solid rgba(255,255,255,0.8); color: var(--white); font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 0.14em; font-weight: 600; border-radius: 3px; transition: background 0.3s, border-color 0.3s; }
+    .slide-btn:hover { background: rgba(255,255,255,0.15); border-color: var(--white); }
+    .slider-dots { position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 20; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); cursor: pointer; border: 1px solid rgba(255,255,255,0.5); transition: background 0.3s, transform 0.3s; }
+    .dot.active { background: var(--white); transform: scale(1.4); }
+    .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 52px; height: 52px; border: 1.5px solid rgba(255,255,255,0.55); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 20; background: rgba(255,255,255,0.08); transition: background 0.3s, border-color 0.3s; }
+    .slider-arrow:hover { background: rgba(255,255,255,0.22); border-color: var(--white); }
+    .slider-arrow svg { width: 18px; height: 18px; stroke: white; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .arrow-prev { left: 28px; }
+    .arrow-next { right: 28px; }
+    .scroll-indicator { position: absolute; bottom: 40px; right: 5%; display: flex; flex-direction: column; align-items: center; gap: 8px; color: rgba(255,255,255,0.65); font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; }
+    .scroll-line { width: 1px; height: 60px; background: rgba(255,255,255,0.25); position: relative; overflow: hidden; }
+    .scroll-line::after { content: ''; position: absolute; top: -100%; left: 0; width: 100%; height: 100%; background: var(--white); animation: scrollAnim 2s infinite 0.5s; }
+    @keyframes scrollAnim { 0%{ top:-100%; } 100%{ top:100%; } }
+
+    /* SECTIONS */
+    section { padding: 96px 5%; }
+    .section-label { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; letter-spacing: 0.42em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 10px; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; color: var(--blue-dark); line-height: 1.25; margin-bottom: 16px; }
+    .section-bar { width: 44px; height: 3px; background: linear-gradient(90deg, var(--blue-mid), var(--blue-light)); margin-bottom: 28px; border-radius: 2px; }
+    .section-desc { font-family: 'Noto Sans JP', sans-serif; font-size: 0.97rem; line-height: 2; color: var(--gray-dark); max-width: 580px; }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* STRENGTHS */
+    #strengths { background: var(--blue-dark); color: var(--white); padding: 80px 5%; }
+    .strengths-header { text-align: center; margin-bottom: 60px; }
+    .strengths-header .section-label { color: var(--blue-pale); }
+    .strengths-header .section-title { color: var(--white); }
+    .strengths-header .section-bar { margin: 16px auto 0; }
+    .strengths-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; max-width: 1100px; margin: 0 auto; }
+    .strength-card { background: rgba(255,255,255,0.06); padding: 52px 40px; text-align: center; transition: background 0.3s; }
+    .strength-card:hover { background: rgba(255,255,255,0.11); }
+    .strength-num { font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 0.3em; color: var(--blue-light); margin-bottom: 20px; }
+    .strength-icon { width: 56px; height: 56px; margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; border: 1.5px solid rgba(74,159,212,0.4); border-radius: 50%; }
+    .strength-icon svg { width: 26px; height: 26px; stroke: var(--blue-light); fill: none; stroke-width: 1.5; }
+    .strength-value { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 300; color: var(--white); line-height: 1; margin-bottom: 10px; }
+    .strength-title { font-family: 'Noto Sans JP', sans-serif; font-size: 0.9rem; font-weight: 500; letter-spacing: 0.04em; color: rgba(255,255,255,0.75); margin-bottom: 16px; }
+    .strength-desc { font-family: 'Noto Sans JP', sans-serif; font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.8; }
+
+    /* SERVICES
+       Card image recommended size: 400 × 240 px */
+    #services { background: var(--gray-light); }
+    .services-header { margin-bottom: 56px; }
+    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; max-width: 1100px; }
+    .service-card { background: var(--white); border-radius: 6px; overflow: hidden; box-shadow: 0 4px 24px rgba(26,58,92,0.07); transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease); }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(26,58,92,0.14); }
+    .service-img-wrap { width: 100%; height: 200px; overflow: hidden; background: var(--blue-pale); display: flex; align-items: center; justify-content: center; }
+    .service-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease); }
+    .service-card:hover .service-img-wrap img { transform: scale(1.05); }
+    .service-body { padding: 28px 28px 32px; }
+    .service-tag { display: inline-block; font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.14em; color: var(--blue-mid); background: var(--blue-ultra); padding: 4px 10px; border-radius: 2px; margin-bottom: 12px; font-weight: 600; text-transform: uppercase; }
+    .service-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--blue-dark); margin-bottom: 12px; line-height: 1.4; }
+    .service-desc { font-family: 'Noto Sans JP', sans-serif; font-size: 0.875rem; color: var(--gray-dark); line-height: 1.85; }
+    .service-more { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-weight: 600; color: var(--blue-mid); letter-spacing: 0.06em; transition: gap 0.3s; }
+    .service-more:hover { gap: 12px; }
+    .service-more svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+    /* FLOW */
+    #flow { background: var(--white); }
+    .flow-header { margin-bottom: 60px; }
+    .flow-steps { display: flex; gap: 0; max-width: 1100px; position: relative; }
+    .flow-steps::before { content: ''; position: absolute; top: 52px; left: calc(12.5% + 28px); right: calc(12.5% + 28px); height: 2px; background: linear-gradient(90deg, var(--blue-light), var(--blue-pale)); }
+    .flow-step { flex: 1; text-align: center; padding: 0 20px; }
+    .flow-num { width: 56px; height: 56px; border-radius: 50%; background: var(--blue-mid); color: var(--white); font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; position: relative; z-index: 1; box-shadow: 0 4px 16px rgba(42,100,150,0.3); }
+    .flow-step-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--blue-dark); margin-bottom: 12px; letter-spacing: 0.04em; }
+    .flow-step-desc { font-family: 'Noto Sans JP', sans-serif; font-size: 0.82rem; color: var(--gray-dark); line-height: 1.9; }
+
+    /* NEWS */
+    #news { background: var(--gray-light); }
+    .news-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; max-width: 1100px; align-items: start; }
+    .news-list { display: flex; flex-direction: column; }
+    .news-item { display: flex; gap: 16px; align-items: flex-start; padding: 22px 0; border-bottom: 1px solid rgba(26,58,92,0.1); }
+    .news-item:first-child { border-top: 1px solid rgba(26,58,92,0.1); }
+    .news-date { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; color: var(--blue-light); white-space: nowrap; letter-spacing: 0.06em; min-width: 95px; padding-top: 2px; }
+    .news-cat { font-family: 'Noto Sans JP', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; color: var(--white); background: var(--blue-mid); padding: 3px 8px; border-radius: 2px; white-space: nowrap; min-width: 60px; text-align: center; margin-top: 2px; }
+    .news-text { font-family: 'Noto Sans JP', sans-serif; font-size: 0.9rem; color: var(--text-main); line-height: 1.7; transition: color 0.2s; }
+    .news-item:hover .news-text { color: var(--blue-mid); }
+    .contact-banner { background: var(--blue-dark); border-radius: 8px; padding: 48px 40px; color: var(--white); position: sticky; top: 100px; }
+    .contact-banner .section-label { color: var(--blue-pale); margin-bottom: 8px; }
+    .contact-banner .section-title { color: var(--white); font-size: 2rem; margin-bottom: 16px; }
+    .contact-banner p { font-family: 'Noto Sans JP', sans-serif; font-size: 0.88rem; color: rgba(255,255,255,0.7); line-height: 1.9; margin-bottom: 32px; }
+    .contact-btns { display: flex; flex-direction: column; gap: 12px; }
+    .btn-primary { display: block; text-align: center; background: var(--blue-mid); color: var(--white); padding: 16px 24px; border-radius: 4px; font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 700; letter-spacing: 0.06em; transition: background 0.3s; }
+    .btn-primary:hover { background: var(--blue-light); }
+    .btn-outline-w { display: block; text-align: center; border: 1.5px solid rgba(255,255,255,0.5); color: var(--white); padding: 14px 24px; border-radius: 4px; font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 500; letter-spacing: 0.06em; transition: background 0.3s, border-color 0.3s; }
+    .btn-outline-w:hover { background: rgba(255,255,255,0.1); border-color: var(--white); }
+
+    /* ABOUT
+       Image recommended size: 600 × 480 px */
+    #about { background: var(--white); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; padding: 96px 5%; }
+    .about-img-wrap { position: relative; }
+    .about-img-wrap img { width: 100%; height: 480px; object-fit: contain; border-radius: 6px; }
+    .about-img-accent { position: absolute; bottom: -24px; right: -24px; width: 140px; height: 140px; background: var(--blue-pale); border-radius: 6px; z-index: -1; }
+    .about-img-accent2 { position: absolute; top: -18px; left: -18px; width: 80px; height: 80px; border: 2px solid var(--blue-light); border-radius: 50%; opacity: 0.4; z-index: -1; }
+    .about-content p { font-family: 'Noto Sans JP', sans-serif; font-size: 0.96rem; line-height: 2.1; color: var(--gray-dark); margin-bottom: 20px; }
+    .about-stats { display: flex; gap: 36px; margin-top: 36px; padding-top: 36px; border-top: 1px solid var(--blue-pale); }
+    .stat-item { text-align: center; }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 300; color: var(--blue-mid); line-height: 1; }
+    .stat-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.78rem; color: var(--gray-mid); letter-spacing: 0.06em; margin-top: 6px; }
+
+    /* FOOTER */
+    footer { background: var(--blue-dark); color: var(--white); }
+    .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; padding: 72px 5% 56px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    /* Footer logo recommended height: 56px */
+    .footer-brand img { height: 56px; width: auto; margin-bottom: 20px; }
+    .footer-brand p { font-family: 'Noto Sans JP', sans-serif; font-size: 0.83rem; color: rgba(255,255,255,0.55); line-height: 1.9; margin-bottom: 24px; }
+    .social-links { display: flex; gap: 12px; }
+    .social-links a { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background 0.3s, border-color 0.3s; }
+    .social-links a:hover { background: var(--blue-mid); border-color: var(--blue-mid); }
+    .social-links svg { width: 14px; height: 14px; stroke: white; fill: none; stroke-width: 1.8; }
+    .footer-col h4 { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-pale); margin-bottom: 20px; }
+    .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { font-family: 'Noto Sans JP', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 24px 5%; font-family: 'Noto Sans JP', sans-serif; font-size: 0.78rem; color: rgba(255,255,255,0.35); }
+    .footer-bottom-links { display: flex; gap: 24px; }
+    .footer-bottom-links a { color: rgba(255,255,255,0.35); transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: rgba(255,255,255,0.7); }
+    #back-top { position: fixed; bottom: 32px; right: 28px; width: 44px; height: 44px; background: var(--blue-mid); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s, background 0.3s; z-index: 800; }
+    #back-top.visible { opacity: 1; transform: none; }
+    #back-top:hover { background: var(--blue-dark); }
+    #back-top svg { width: 18px; height: 18px; stroke: white; fill: none; stroke-width: 2; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2,1fr); }
+      .news-layout { grid-template-columns: 1fr; gap: 48px; }
+      .contact-banner { position: static; }
+      #about { grid-template-columns: 1fr; gap: 48px; padding: 72px 5%; }
+      .about-img-wrap img { height: 320px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .flow-steps::before { display: none; }
+    }
+    @media (max-width: 768px) {
+      :root { --nav-height: 64px; }
+      .nav-links, .nav-lang, .nav-cta-btn { display: none; }
+      .hamburger { display: flex; }
+      .fixed-footer-cta { display: flex; }
+      section { padding: 72px 5%; }
+      .strengths-grid { grid-template-columns: 1fr; gap: 1px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .flow-steps { flex-direction: column; gap: 32px; max-width: 380px; margin: 0 auto; }
+      #about { grid-template-columns: 1fr; }
+      .about-img-wrap img { height: 260px; }
+      .about-img-accent, .about-img-accent2 { display: none; }
+      .footer-top { grid-template-columns: 1fr; gap: 36px; padding: 56px 5% 40px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      .footer-bottom-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+      .slide-content { left: 6%; right: 6%; max-width: none; }
+      .arrow-prev { left: 12px; } .arrow-next { right: 12px; }
+      .slider-arrow { width: 40px; height: 40px; }
+      .scroll-indicator { display: none; }
+      #back-top { bottom: 80px; }
+    }
+    @media (max-width: 480px) {
+      .slide-title { font-size: 2rem; }
+      .about-stats { gap: 20px; flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a class="nav-logo" href="#hero">
+    <!-- Logo file: place logo.jpg in the same folder | Recommended height: 52px -->
+    <img src="../logo.jpg" alt="JAPAN MEDICAL INC." />
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#strengths">Our Strengths</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#flow">How It Works</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#about">About Us</a></li>
+    </ul>
+    <div class="nav-lang">
+      <a href="../index.html">日本語</a>
+      <a href="#" class="active">English</a>
+      <a href="../zh/zh_index.html">中文</a>
+    </div>
+    <a href="#contact" class="nav-cta-btn">Contact Us</a>
+  </div>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#strengths" onclick="toggleMenu()">Our Strengths</a>
+  <a href="#services"  onclick="toggleMenu()">Services</a>
+  <a href="#flow"      onclick="toggleMenu()">How It Works</a>
+  <a href="#news"      onclick="toggleMenu()">News</a>
+  <a href="#about"     onclick="toggleMenu()">About Us</a>
+  <a href="#contact"   onclick="toggleMenu()">Contact Us</a>
+  <div class="mobile-lang">
+    <a href="../index.html">日本語</a>
+    <a href="#">English</a>
+    <a href="../zh/index.html">中文</a>
+  </div>
+</div>
+
+<!-- HERO SLIDER
+     Slide image recommended size: 1920 × 900 px
+     To replace: change url() path in each .slide-bg style attribute -->
+<section id="hero">
+  <div class="slider-track" id="sliderTrack">
+    <!-- Slide 1 — replace url('slide1.jpg') with your image -->
+    <div class="slide active">
+      <div class="slide-bg" style="background-image: url('../logo.jpg'); background-color: #1a3a5c; background-size: contain; background-repeat: no-repeat;"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <p class="slide-eyebrow">Japan Medical Inc.</p>
+        <h1 class="slide-title">World-Class Japanese<br>Healthcare,<br>For Everyone.</h1>
+        <p class="slide-sub">Delivering Japan's finest medical expertise and warm hospitality<br>to patients around the world with trust and peace of mind.</p>
+        <a href="#services" class="slide-btn">Explore Services</a>
+      </div>
+    </div>
+    <!-- Slide 2 — replace url('slide2.jpg') with your image -->
+    <div class="slide">
+      <div class="slide-bg" style="background-image: url('../logo.jpg'); background-color: #2a5a8c; background-size: contain; background-repeat: no-repeat;"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <p class="slide-eyebrow">Medical Tourism</p>
+        <h1 class="slide-title">Complete Medical<br>Travel Support</h1>
+        <p class="slide-sub">From visa arrangements to post-treatment follow-up,<br>our dedicated team supports you every step of the way.</p>
+        <a href="#flow" class="slide-btn">How It Works</a>
+      </div>
+    </div>
+    <!-- Slide 3 — replace url('slide3.jpg') with your image -->
+    <div class="slide">
+      <div class="slide-bg" style="background-image: url('../logo.jpg'); background-color: #1e4a6e; background-size: contain; background-repeat: no-repeat;"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <p class="slide-eyebrow">Advanced Healthcare</p>
+        <h1 class="slide-title">Advanced Treatments<br>for a Brighter Future</h1>
+        <p class="slide-sub">Cancer treatment, precision diagnostics, anti-aging and more —<br>connecting you to Japan's top medical institutions.</p>
+        <a href="#about" class="slide-btn">About Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="slider-arrow arrow-prev" onclick="changeSlide(-1)"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg></div>
+  <div class="slider-arrow arrow-next" onclick="changeSlide(1)"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"></polyline></svg></div>
+  <div class="slider-dots" id="sliderDots"></div>
+  <div class="scroll-indicator"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- STRENGTHS -->
+<section id="strengths">
+  <div class="strengths-header fade-in">
+    <p class="section-label">Our Strengths</p>
+    <h2 class="section-title">3 Key Strengths</h2>
+    <div class="section-bar" style="margin: 16px auto 0;"></div>
+  </div>
+  <div class="strengths-grid">
+    <div class="strength-card fade-in">
+      <p class="strength-num">01</p>
+      <div class="strength-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div>
+      <p class="strength-value">2,600<span style="font-size:1.2rem">+</span></p>
+      <p class="strength-title">Partner Medical Institutions</p>
+      <p class="strength-desc">A curated network of over 2,600 leading medical institutions across Japan to match patients with the best care.</p>
+    </div>
+    <div class="strength-card fade-in" style="transition-delay:.15s">
+      <p class="strength-num">02</p>
+      <div class="strength-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+      <p class="strength-value">No.<span style="font-size:1.8rem">1</span></p>
+      <p class="strength-title">First AMTAC-Certified Medical Stay Guarantor</p>
+      <p class="strength-desc">Certified as Japan's first medical stay visa guarantor, ensuring safe and compliant medical travel for all patients.</p>
+    </div>
+    <div class="strength-card fade-in" style="transition-delay:.3s">
+      <p class="strength-num">03</p>
+      <div class="strength-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
+      <p class="strength-value">52<span style="font-size:1.4rem"> Countries</span></p>
+      <p class="strength-title">5,800+ Cases Supported</p>
+      <p class="strength-desc">A proven track record of supporting patients from 52 countries, built on trust, expertise and compassionate care.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES — Card image recommended size: 400 × 240 px -->
+<section id="services">
+  <div class="services-header fade-in">
+    <p class="section-label">Our Services</p>
+    <h2 class="section-title">What We Offer</h2>
+    <div class="section-bar"></div>
+    <p class="section-desc">From arrival to recovery, we provide comprehensive, end-to-end support so you can focus entirely on your health.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-in">
+      <div class="service-img-wrap"><img src="../logo.jpg" alt="Advanced Treatment" /></div>
+      <div class="service-body">
+        <span class="service-tag">Treatment</span>
+        <h3 class="service-title">Advanced Medical Treatment</h3>
+        <p class="service-desc">Access Japan's most advanced therapies including cutting-edge cancer treatment and specialized surgical care.</p>
+        <a href="#" class="service-more">Learn More <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+      </div>
+    </div>
+    <div class="service-card fade-in" style="transition-delay:.12s">
+      <div class="service-img-wrap"><img src="../logo.jpg" alt="Health Screening" /></div>
+      <div class="service-body">
+        <span class="service-tag">Health Check</span>
+        <h3 class="service-title">Comprehensive Health Screening</h3>
+        <p class="service-desc">Japan's highest-standard medical checkups for early detection, prevention and long-term wellness planning.</p>
+        <a href="#" class="service-more">Learn More <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+      </div>
+    </div>
+    <div class="service-card fade-in" style="transition-delay:.24s">
+      <div class="service-img-wrap"><img src="../logo.jpg" alt="Second Opinion" /></div>
+      <div class="service-body">
+        <span class="service-tag">2nd Opinion</span>
+        <h3 class="service-title">Second Opinion</h3>
+        <p class="service-desc">Gain confidence in your diagnosis and treatment plan with expert second opinions from Japan's top specialists.</p>
+        <a href="#" class="service-more">Learn More <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+      </div>
+    </div>
+    <div class="service-card fade-in" style="transition-delay:.36s">
+      <div class="service-img-wrap"><img src="../logo.jpg" alt="Anti-Aging & Wellness" /></div>
+      <div class="service-body">
+        <span class="service-tag">Wellness</span>
+        <h3 class="service-title">Anti-Aging &amp; Wellness</h3>
+        <p class="service-desc">Discover the latest in regenerative medicine and wellness programs to live healthier and feel younger.</p>
+        <a href="#" class="service-more">Learn More <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+      </div>
+    </div>
+    <div class="service-card fade-in" style="transition-delay:.48s">
+      <div class="service-img-wrap"><img src="../logo.jpg" alt="Doctor Referral" /></div>
+      <div class="service-body">
+        <span class="service-tag">Doctor Match</span>
+        <h3 class="service-title">Doctor Referral</h3>
+        <p class="service-desc">We hand-pick Japan's finest specialists across every medical field to ensure you receive the best possible care.</p>
+        <a href="#" class="service-more">Learn More <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+      </div>
+    </div>
+    <div class="service-card fade-in" style="transition-delay:.6s">
+      <div class="service-img-wrap"><img src="../logo.jpg" alt="Concierge & Interpretation" /></div>
+      <div class="service-body">
+        <span class="service-tag">Concierge</span>
+        <h3 class="service-title">Interpretation &amp; Concierge</h3>
+        <p class="service-desc">Multilingual interpreters accompany you to every appointment, with full concierge support throughout your stay.</p>
+        <a href="#" class="service-more">Learn More <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section id="flow">
+  <div class="flow-header fade-in">
+    <p class="section-label">How It Works</p>
+    <h2 class="section-title">Your Journey with Us</h2>
+    <div class="section-bar"></div>
+  </div>
+  <div class="flow-steps fade-in">
+    <div class="flow-step">
+      <div class="flow-num">01</div>
+      <h3 class="flow-step-title">Get in Touch</h3>
+      <p class="flow-step-desc">Submit your inquiry via our contact form. We will guide you on the required documents and next steps.</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">02</div>
+      <h3 class="flow-step-title">Appointment Coordination</h3>
+      <p class="flow-step-desc">We confirm availability with the medical institution and provide a detailed cost estimate for your treatment.</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">03</div>
+      <h3 class="flow-step-title">Travel Preparation</h3>
+      <p class="flow-step-desc">We arrange your medical visa, accommodation, flights and interpretation services for a seamless journey.</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">04</div>
+      <h3 class="flow-step-title">Treatment &amp; Follow-up</h3>
+      <p class="flow-step-desc">Our interpreter accompanies you to every appointment. 24/7 call center and post-departure follow-up included.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS + CONTACT -->
+<section id="news">
+  <div class="news-layout">
+    <div>
+      <div class="fade-in">
+        <p class="section-label">Latest News</p>
+        <h2 class="section-title">News &amp; Updates</h2>
+        <div class="section-bar"></div>
+      </div>
+      <ul class="news-list fade-in">
+        <li class="news-item"><span class="news-date">2025.12.17</span><span class="news-cat">Medical</span><a href="#" class="news-text">Continuing Gastric Cancer Chemotherapy Safely — Latest Treatments Explained by Leading Oncologists</a></li>
+        <li class="news-item"><span class="news-date">2025.11.27</span><span class="news-cat">Event</span><a href="#" class="news-text">Participated in the 25th Beijing International Medical Tourism Exhibition</a></li>
+        <li class="news-item"><span class="news-date">2025.11.21</span><span class="news-text">Safe Urinary Stone Treatment in Japan — Featured Medical Institution Introduction</span></li>
+        <li class="news-item"><span class="news-date">2025.10.05</span><span class="news-cat">Notice</span><a href="#" class="news-text">JAPAN MEDICAL INC. Official Website Relaunched</a></li>
+        <li class="news-item"><span class="news-date">2025.09.18</span><span class="news-cat">Medical</span><a href="#" class="news-text">Latest Cancer Immunotherapy Available — Partner Institution Launches New Treatment Program</a></li>
+      </ul>
+    </div>
+    <div id="contact" class="contact-banner fade-in">
+      <p class="section-label">Contact Us</p>
+      <h2 class="section-title">Get in Touch</h2>
+      <p>Have questions about Japanese healthcare or medical travel? Our dedicated team is ready to provide personalized guidance and support.</p>
+      <div class="contact-btns">
+        <a href="#" class="btn-primary">Send an Enquiry</a>
+        <a href="tel:0338118600" class="btn-outline-w">📞 +81-3-3811-8600</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT — Image recommended size: 600 × 480 px -->
+<section id="about">
+  <div class="about-img-wrap fade-in">
+    <img src="../logo.jpg" alt="About JAPAN MEDICAL INC." />
+    <div class="about-img-accent"></div>
+    <div class="about-img-accent2"></div>
+  </div>
+  <div class="about-content fade-in">
+    <p class="section-label">About Us</p>
+    <h2 class="section-title">About<br>JAPAN MEDICAL INC.</h2>
+    <div class="section-bar"></div>
+    <p>JAPAN MEDICAL INC. is a premier medical solutions provider dedicated to connecting patients worldwide with Japan's highest-standard healthcare services.</p>
+    <p>With a network of over 2,600 partner institutions and recognized as Japan's first AMTAC-certified medical stay guarantor, we offer truly comprehensive medical travel support.</p>
+    <p>Our multilingual team provides 24/7 assistance — from pre-arrival planning through post-treatment care — so patients can focus on recovery with complete peace of mind.</p>
+    <div class="about-stats">
+      <div class="stat-item"><p class="stat-num">2,600+</p><p class="stat-label">Partner Institutions</p></div>
+      <div class="stat-item"><p class="stat-num">52</p><p class="stat-label">Countries Served</p></div>
+      <div class="stat-item"><p class="stat-num">5,800+</p><p class="stat-label">Cases Supported</p></div>
+      <div class="stat-item"><p class="stat-num">24/7</p><p class="stat-label">Support Available</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="../logo.jpg" alt="JAPAN MEDICAL INC." />
+      <p>A premier medical solutions provider<br>delivering Japan's finest healthcare to the world.</p>
+      <div class="social-links">
+        <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon></svg></a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="#">Advanced Treatment</a></li><li><a href="#">Health Screening</a></li><li><a href="#">Second Opinion</a></li><li><a href="#">Anti-Aging &amp; Wellness</a></li><li><a href="#">Doctor Referral</a></li></ul></div>
+    <div class="footer-col"><h4>Information</h4><ul><li><a href="#">Medical Institutions</a></li><li><a href="#">Patient Testimonials</a></li><li><a href="#">FAQ</a></li><li><a href="#">News</a></li></ul></div>
+    <div class="footer-col"><h4>Company</h4><ul><li><a href="#">About Us</a></li><li><a href="#">Contact Us</a></li><li><a href="#">For Medical Institutions</a></li><li><a href="#">Interpreter Recruitment</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 JAPAN MEDICAL INC. All Rights Reserved.</p>
+    <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Sitemap</a></div>
+  </div>
+</footer>
+
+<div class="fixed-footer-cta">
+  <a href="#contact" class="cta-contact">Contact Us</a>
+  <a href="tel:0338118600" class="cta-tel">📞 Call Us</a>
+</div>
+
+<div id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+</div>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const backTop = document.getElementById('back-top');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+    backTop.classList.toggle('visible', window.scrollY > 400);
+  });
+  function toggleMenu() {
+    const ham = document.getElementById('hamburger');
+    const menu = document.getElementById('mobileMenu');
+    ham.classList.toggle('open');
+    menu.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  }
+  const slides = document.querySelectorAll('.slide');
+  const track = document.getElementById('sliderTrack');
+  const dotsWrap = document.getElementById('sliderDots');
+  let current = 0, autoTimer;
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dotsWrap.children[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotsWrap.children[current].classList.add('active');
+    track.style.transform = `translateX(-${current * 100}%)`;
+    resetAuto();
+  }
+  function changeSlide(dir) { goTo(current + dir); }
+  function resetAuto() { clearInterval(autoTimer); autoTimer = setInterval(() => goTo(current + 1), 5500); }
+  resetAuto();
+  const io = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } }); }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
