@@ -215,6 +215,7 @@ body{font-family:'Noto Sans JP',sans-serif;color:var(--text);background:var(--wh
     <button class="tab-btn active" onclick="filterRegion('all',this)">すべて</button>
     <button class="tab-btn" onclick="filterRegion('general',this)">総合病院</button>
     <button class="tab-btn" onclick="filterRegion('regen',this)">再生医学</button>
+    <button class="tab-btn" onclick="filterRegion('cardio',this)">血管</button>
   </div>
 </div>
 
@@ -424,6 +425,60 @@ body{font-family:'Noto Sans JP',sans-serif;color:var(--text);background:var(--wh
       </div>
     </div>
   </div>
+  <div class="region-section fade-in" data-region="cardio" id="cardio">
+    <div class="region-header">
+      <div class="region-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></div>
+      <div><h2 class="region-name">血管</h2><p class="region-count">血管専門機関</p></div>
+    </div>
+    <div class="hospital-grid">
+
+      <!-- 医院1 ↓ 把下面的内容替换成你的医院信息 -->
+      <div class="hospital-card" data-name="腎研クリニック">
+        <h3 class="hospital-name">腎研クリニック</h3>
+        <p class="hospital-catch">血管活性化医療を中心に、脳梗塞の未病予防と後遺症改善治療を行うクリニック。</p>
+        <p class="hospital-addr">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          東京都新宿区高田馬場1-33-13 千年ビル2階
+        </p>
+        <div class="hospital-tags">
+          <span class="hospital-tag">血管活性化医療</span>
+        </div>
+        <div class="hospital-footer">
+          <a href="https://jinken-tokyo.jp/" target="_blank" class="hospital-site">
+            公式サイト
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 医院2 ↓ 复制上面那段，改成第二家医院的信息 -->
+      <div class="hospital-card" data-name="SPES CLINIC GINZA">
+        <h3 class="hospital-name">SPES CLINIC GINZA</h3>
+        <p class="hospital-catch">内科診療と幹細胞再生医療を組み合わせ、代謝疾患に対する医療を提供するクリニック。</p>
+        <p class="hospital-addr">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          東京都中央区銀座1-4-5 GINZA URBAN 21 BLDG. 6F
+        </p>
+        <p class="hospital-addr">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          東京都中央区晴海2-1-40 晴海プライムスクエア 11F
+        </p>
+        <div class="hospital-tags">
+          <span class="hospital-tag">内科（神経内科 / 消化器内科）</span>
+        </div>
+        <div class="hospital-footer">
+          <a href="http://spesclinic.jp/" target="_blank" class="hospital-site">
+            公式サイト
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
 </div>
 
 <div class="more-wrap">
