@@ -6,39 +6,28 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet"/>
 <style>
+
 :root{--blue-dark:#1a3a5c;--blue-mid:#2a6496;--blue-light:#4a9fd4;--blue-pale:#d6eaf8;--blue-ultra:#eaf4fb;--orange:#ed7f2e;--orange-bg:rgba(237,127,46,.06);--white:#fff;--gray-light:#f5f7fa;--gray-mid:#8a9bb0;--gray-dark:#3d4f63;--text:#1e2d3d;--nav:80px;--ease:cubic-bezier(.25,.46,.45,.94)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Cormorant Garamond','Noto Sans JP',serif;color:var(--text);background:var(--white);overflow-x:hidden}
 img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul{list-style:none}
-.page-hero-title,.region-name,.hospital-name,.contact-title{font-family:"Cormorant Garamond",serif}
-
-/* ── NAV ── */
-#navbar{position:fixed;top:0;left:0;right:0;height:var(--nav);z-index:1000;
-  display:flex;align-items:center;gap:0;padding:0 3%;
-  background:rgba(26,58,92,.96);
-  transition:background .4s var(--ease),box-shadow .4s var(--ease),height .4s var(--ease)}
+#navbar{position:fixed;top:0;left:0;right:0;height:var(--nav);z-index:1000;display:flex;align-items:center;padding:0 3%;background:rgba(26,58,92,.96);transition:background .4s var(--ease),box-shadow .4s var(--ease),height .4s var(--ease)}
 #navbar.scrolled{background:rgba(255,255,255,.97);box-shadow:0 2px 28px rgba(26,58,92,.1);height:64px}
-.nav-logo{flex-shrink:0}
-.nav-logo img{height:48px;width:auto;transition:height .4s var(--ease)}
+.nav-logo{flex-shrink:0}.nav-logo img{height:48px;width:auto;transition:height .4s var(--ease)}
 #navbar.scrolled .nav-logo img{height:38px}
-
-/* search — centered */
 .nav-search-wrap{flex:1;display:flex;justify-content:center;padding:0 16px}
 .nav-search-form{display:flex;align-items:center;background:rgba(255,255,255,.13);border:1.5px solid rgba(255,255,255,.3);border-radius:24px;overflow:hidden;width:100%;max-width:380px;transition:all .3s var(--ease)}
 #navbar.scrolled .nav-search-form{background:rgba(42,100,150,.06);border-color:var(--blue-pale)}
 .nav-search-form:focus-within{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.7);max-width:420px}
 #navbar.scrolled .nav-search-form:focus-within{background:var(--white);border-color:var(--blue-light);box-shadow:0 0 0 3px rgba(74,159,212,.13)}
-.nav-search-input{flex:1;background:none;border:none;outline:none;padding:8px 14px;font-size:.82rem;color:var(--white);font-family:inherit}
+.nav-search-input{flex:1;background:none;border:none;outline:none;padding:8px 14px;font-size:.82rem;color:var(--white)}
 #navbar.scrolled .nav-search-input{color:var(--text)}
 .nav-search-input::placeholder{color:rgba(255,255,255,.5)}
 #navbar.scrolled .nav-search-input::placeholder{color:var(--gray-mid)}
 .nav-search-btn{background:none;border:none;cursor:pointer;padding:8px 12px;color:rgba(255,255,255,.65);display:flex;align-items:center;transition:color .2s}
 .nav-search-btn:hover{color:var(--white)}
 #navbar.scrolled .nav-search-btn{color:var(--blue-mid)}
-#navbar.scrolled .nav-search-btn:hover{color:var(--blue-dark)}
 .nav-search-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.2}
-
 .nav-right{display:flex;align-items:center;gap:6px;flex-shrink:0}
 .nav-links{display:flex;align-items:center;gap:20px}
 .nav-links a{font-size:.855rem;font-weight:500;letter-spacing:.05em;color:var(--white);position:relative;padding-bottom:4px;transition:color .3s;white-space:nowrap}
@@ -55,141 +44,80 @@ img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul{list-st
 .nav-home-btn:hover{background:var(--blue-dark)}
 .nav-home-btn svg{width:13px;height:13px;stroke:var(--white);fill:none;stroke-width:2}
 .nav-home-btn::after{display:none!important}
-
-/* ── HAMBURGER ── */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;z-index:1100;margin-left:8px}
 .hamburger span{display:block;width:25px;height:2px;background:var(--white);border-radius:2px;transition:all .3s}
 #navbar.scrolled .hamburger span{background:var(--blue-dark)}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-
-/* ── MOBILE MENU ── */
-.mobile-menu{position:fixed;inset:0;background:var(--blue-dark);z-index:1050;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
-  opacity:0;pointer-events:none;transition:opacity .35s}
+.mobile-menu{position:fixed;inset:0;background:var(--blue-dark);z-index:1050;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;opacity:0;pointer-events:none;transition:opacity .35s}
 .mobile-menu.open{opacity:1;pointer-events:all}
-/* close X button */
-.mobile-close{position:absolute;top:20px;right:20px;background:none;border:none;
-  cursor:pointer;color:rgba(255,255,255,.7);font-size:1.6rem;line-height:1;padding:8px;
-  transition:color .2s}
+.mobile-close{position:absolute;top:20px;right:20px;background:none;border:none;cursor:pointer;color:rgba(255,255,255,.7);font-size:1.6rem;line-height:1;padding:8px;transition:color .2s}
 .mobile-close:hover{color:var(--white)}
-/* search in mobile */
 .mob-search-wrap{width:280px;margin-bottom:8px}
-.mob-search-form{display:flex;align-items:center;background:rgba(255,255,255,.11);
-  border:1.5px solid rgba(255,255,255,.28);border-radius:24px;overflow:hidden}
-.mob-search-input{flex:1;background:none;border:none;outline:none;padding:10px 14px;
-  font-size:.88rem;color:var(--white);font-family:inherit}
+.mob-search-form{display:flex;align-items:center;background:rgba(255,255,255,.11);border:1.5px solid rgba(255,255,255,.28);border-radius:24px;overflow:hidden}
+.mob-search-input{flex:1;background:none;border:none;outline:none;padding:10px 14px;font-size:.88rem;color:var(--white)}
 .mob-search-input::placeholder{color:rgba(255,255,255,.45)}
-.mob-search-btn{background:none;border:none;cursor:pointer;padding:10px 12px;
-  color:rgba(255,255,255,.65);display:flex;align-items:center}
+.mob-search-btn{background:none;border:none;cursor:pointer;padding:10px 12px;color:rgba(255,255,255,.65);display:flex;align-items:center}
 .mob-search-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.2}
-.mobile-menu a{font-size:1.15rem;font-weight:500;color:var(--white);letter-spacing:.09em;
-  padding:7px 0;border-bottom:1px solid rgba(255,255,255,.12);width:240px;text-align:center}
+.mobile-menu a{font-size:1.15rem;font-weight:500;color:var(--white);letter-spacing:.09em;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.12);width:240px;text-align:center}
 .mobile-lang{display:flex;gap:14px;margin-top:6px}
 .mobile-lang a{font-size:.86rem;color:rgba(255,255,255,.68);border:none!important;width:auto!important;padding:4px 0!important}
-
-/* ── FIXED FOOTER CTA (mobile) ── */
-.fixed-footer-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:900;
-  background:var(--blue-dark);padding:10px 14px;gap:8px}
-.fixed-footer-cta a{flex:1;text-align:center;padding:11px 0;font-size:.84rem;font-weight:700;border-radius:4px}
+.fixed-footer-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:900;background:var(--blue-dark);padding:10px 14px;gap:8px}
+.fixed-footer-cta a,.fixed-footer-cta button{flex:1;text-align:center;padding:11px 0;font-size:.84rem;font-weight:700;border-radius:4px;border:none;cursor:pointer;font-family:inherit}
 .cta-contact{background:var(--blue-mid);color:var(--white)}
-.cta-wechat{background:var(--white);color:var(--blue-dark);border:1.5px solid var(--blue-mid)}
-
-/* ── PAGE HERO ── */
-.page-hero{padding-top:var(--nav);background:linear-gradient(135deg,var(--blue-dark),var(--blue-mid));
-  color:var(--white);text-align:center;padding-bottom:56px;padding-left:5%;padding-right:5%}
-.page-hero-label{font-family:'Cormorant Garamond',serif;font-size:.88rem;letter-spacing:.42em;
-  text-transform:uppercase;color:var(--blue-pale);margin-bottom:12px;margin-top:42px}
-.page-hero-title{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;letter-spacing:.06em;margin-bottom:16px}
+.cta-wechat{background:var(--white);color:var(--blue-dark);border:1.5px solid var(--blue-mid)!important}
+.page-hero{padding-top:var(--nav);background:linear-gradient(135deg,var(--blue-dark),var(--blue-mid));color:var(--white);text-align:center;padding-bottom:56px;padding-left:5%;padding-right:5%}
+.page-hero-label{font-family:'Cormorant Garamond',serif;font-size:.88rem;letter-spacing:.42em;text-transform:uppercase;color:var(--blue-pale);margin-bottom:12px;margin-top:42px}
 .page-hero-bar{width:44px;height:3px;background:rgba(255,255,255,.4);border-radius:2px;margin:0 auto 16px}
 .page-hero-desc{font-size:.93rem;line-height:2;color:rgba(255,255,255,.8);max-width:640px;margin:0 auto}
-
-/* ── BREADCRUMB ── */
 .breadcrumb{background:var(--gray-light);padding:13px 5%;font-size:.8rem;color:var(--gray-mid)}
 .breadcrumb a{color:var(--blue-mid)}.breadcrumb a:hover{color:var(--blue-dark)}.breadcrumb span{margin:0 8px}
-
-/* ── SEARCH RESULT BANNER ── */
-.search-banner{display:none;align-items:center;gap:10px;
-  background:rgba(237,127,46,.07);border:1px solid rgba(237,127,46,.3);border-radius:6px;
-  padding:11px 16px;margin:16px auto 0;max-width:1100px;width:calc(100% - 10%);
-  font-size:.84rem;color:#8a4010}
+.search-banner{display:none;align-items:center;gap:10px;background:rgba(237,127,46,.07);border:1px solid rgba(237,127,46,.3);border-radius:6px;padding:11px 16px;margin:16px auto 0;max-width:1100px;width:calc(100% - 10%);font-size:.84rem;color:#8a4010}
 .search-banner.show{display:flex}
 .search-banner svg{width:14px;height:14px;stroke:var(--orange);fill:none;stroke-width:2.2;flex-shrink:0}
 .search-clear{margin-left:auto;font-size:.78rem;color:var(--blue-mid);cursor:pointer;font-weight:700;white-space:nowrap}
 .search-clear:hover{text-decoration:underline;color:var(--blue-dark)}
-
-/* ── TABS ── */
-.tab-section{background:var(--white);padding:28px 5% 0;
-  position:sticky;top:var(--nav);z-index:100;border-bottom:2px solid var(--blue-pale)}
-.tabs{display:flex;max-width:360px}
-.tab-btn{flex:1;padding:11px 14px;font-size:.86rem;font-weight:700;letter-spacing:.05em;
-  color:var(--gray-mid);background:none;border:none;border-bottom:3px solid transparent;
-  cursor:pointer;transition:color .3s,border-color .3s;font-family:inherit}
+.tab-section{background:var(--white);padding:28px 5% 0;position:sticky;top:var(--nav);z-index:100;border-bottom:2px solid var(--blue-pale)}
+.tabs{display:flex;max-width:440px}
+.tab-btn{flex:1;padding:11px 14px;font-size:.86rem;font-weight:700;letter-spacing:.05em;color:var(--gray-mid);background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;transition:color .3s,border-color .3s;font-family:inherit}
 .tab-btn.active{color:var(--blue-mid);border-bottom-color:var(--blue-mid)}
 .tab-btn:hover{color:var(--blue-dark)}
-
-/* ── HOSPITAL CARDS ── */
 .hospitals-wrap{padding:48px 5%;max-width:1100px;margin:0 auto}
 .region-section{margin-bottom:56px}.region-section.hidden{display:none}
 .region-header{display:flex;align-items:center;gap:14px;margin-bottom:24px;padding-bottom:14px;border-bottom:2px solid var(--blue-pale)}
 .region-icon{width:42px;height:42px;border-radius:50%;background:var(--blue-mid);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .region-icon svg{width:19px;height:19px;stroke:var(--white);fill:none;stroke-width:1.8}
-.region-name{font-size:1.4rem;font-weight:300;color:var(--blue-dark);letter-spacing:.07em}
 .region-count{font-size:.78rem;color:var(--gray-mid);margin-top:3px}
 .hospital-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.hospital-card{background:var(--white);border:1px solid var(--blue-pale);border-radius:8px;
-  padding:22px 22px 18px;
-  transition:box-shadow .3s var(--ease),transform .3s var(--ease),border-color .3s,background .3s;
-  position:relative;overflow:hidden}
-.hospital-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;
-  background:var(--blue-mid);opacity:0;transition:opacity .3s,background .3s}
+.hospital-card{background:var(--white);border:1px solid var(--blue-pale);border-radius:8px;padding:22px 22px 18px;transition:box-shadow .3s var(--ease),transform .3s var(--ease),border-color .3s,background .3s;position:relative;overflow:hidden}
+.hospital-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--blue-mid);opacity:0;transition:opacity .3s,background .3s}
 .hospital-card:hover{box-shadow:0 8px 28px rgba(26,58,92,.11);transform:translateY(-3px);border-color:var(--blue-light)}
 .hospital-card:hover::before{opacity:1}
-/* orange highlight state */
-.hospital-card.hit{
-  border-color:var(--orange)!important;
-  box-shadow:0 8px 28px rgba(237,127,46,.22)!important;
-  transform:translateY(-3px)!important;
-  background:var(--orange-bg)!important;
-}
+.hospital-card.hit{border-color:var(--orange)!important;box-shadow:0 8px 28px rgba(237,127,46,.22)!important;transform:translateY(-3px)!important;background:var(--orange-bg)!important}
 .hospital-card.hit::before{background:var(--orange)!important;opacity:1!important}
 .hospital-card.hit .hospital-tag{color:var(--orange);background:rgba(237,127,46,.12)}
-.hospital-name{font-size:1.02rem;font-weight:400;color:var(--blue-dark);margin-bottom:8px;line-height:1.45}
-.hospital-catch{font-size:.8rem;font-weight:500;line-height:1.7;margin-bottom:8px;
-  padding:7px 10px;border-radius:4px;border-left:3px solid var(--blue-light);
-  color:var(--blue-mid);background:var(--blue-ultra)}
-.hospital-addr{display:flex;align-items:flex-start;gap:5px;font-size:.77rem;color:var(--gray-mid);
-  margin-bottom:8px;line-height:1.6}
+.hospital-catch{font-size:.8rem;font-weight:500;line-height:1.7;margin-bottom:8px;padding:7px 10px;border-radius:4px;border-left:3px solid var(--blue-light);color:var(--blue-mid);background:var(--blue-ultra)}
+.hospital-addr{display:flex;align-items:flex-start;gap:5px;font-size:.77rem;color:var(--gray-mid);margin-bottom:8px;line-height:1.6}
 .hospital-addr svg{width:12px;height:12px;stroke:var(--gray-mid);fill:none;stroke-width:2;flex-shrink:0;margin-top:3px}
 .hospital-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
-.hospital-tag{font-size:.69rem;letter-spacing:.07em;padding:2px 8px;border-radius:2px;font-weight:600;
-  color:var(--blue-mid);background:var(--blue-ultra);transition:color .3s,background .3s}
+.hospital-tag{font-size:.69rem;letter-spacing:.07em;padding:2px 8px;border-radius:2px;font-weight:600;color:var(--blue-mid);background:var(--blue-ultra);transition:color .3s,background .3s}
 .hospital-footer{display:flex;align-items:center}
-.hospital-site{display:inline-flex;align-items:center;gap:5px;font-size:.79rem;font-weight:600;
-  color:var(--blue-mid);transition:gap .3s}
+.hospital-site{display:inline-flex;align-items:center;gap:5px;font-size:.79rem;font-weight:600;color:var(--blue-mid);transition:gap .3s}
 .hospital-site:hover{gap:8px}
 .hospital-site svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2}
-
-/* ── MORE SECTION ── */
 .more-wrap{padding:0 5%;max-width:1100px;margin:0 auto 52px}
-#moreSection{border:1px dashed var(--blue-light);border-radius:8px;padding:32px;text-align:center;
-  background:var(--blue-ultra);transition:border-color .4s,background .4s,border-style .2s}
+#moreSection{border:1px dashed var(--blue-light);border-radius:8px;padding:32px;text-align:center;background:var(--blue-ultra);transition:border-color .4s,background .4s,border-style .2s}
 #moreSection.miss{border-color:var(--orange);border-style:solid;background:var(--orange-bg)}
 #moreSection p{font-size:.91rem;color:var(--gray-dark);line-height:2;margin-bottom:18px;transition:color .3s}
 #moreSection.miss p{color:#8a4010}
-.btn-more{display:inline-block;background:var(--blue-mid);color:var(--white);
-  padding:12px 34px;border-radius:4px;font-size:.86rem;font-weight:700;letter-spacing:.07em;
-  transition:background .3s,box-shadow .3s}
+.btn-more{display:inline-block;background:var(--blue-mid);color:var(--white);padding:12px 34px;border-radius:4px;font-size:.86rem;font-weight:700;letter-spacing:.07em;transition:background .3s,box-shadow .3s}
 .btn-more:hover{background:var(--blue-dark)}
 .btn-more.miss{background:var(--orange);box-shadow:0 4px 16px rgba(237,127,46,.3)}
 .btn-more.miss:hover{background:#c8660f}
-
-/* ── CONTACT ── */
 #contact{background:var(--blue-dark);padding:68px 5%;color:var(--white)}
 .contact-inner{max-width:800px;margin:0 auto;text-align:center}
 .contact-label{font-family:'Cormorant Garamond',serif;font-size:.88rem;letter-spacing:.42em;text-transform:uppercase;color:var(--blue-pale);margin-bottom:10px}
-.contact-title{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:300;color:var(--white);margin-bottom:14px}
 .contact-bar{width:44px;height:3px;background:rgba(255,255,255,.28);border-radius:2px;margin:0 auto 24px}
 .contact-desc{font-size:.91rem;color:rgba(255,255,255,.68);line-height:2;margin-bottom:40px}
 .wechat-box{display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
@@ -205,10 +133,10 @@ img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul{list-st
 .wechat-id{font-family:'Cormorant Garamond',serif;font-size:1.85rem;font-weight:300;color:var(--white);letter-spacing:.04em;display:flex;align-items:center;gap:10px}
 .wechat-id svg{width:24px;height:24px}
 .wechat-note{font-size:.79rem;color:rgba(255,255,255,.5);margin-top:11px;line-height:1.8}
-
-/* ── FOOTER ── */
+.toast{position:fixed;bottom:84px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(26,58,92,.93);color:#fff;padding:12px 22px;border-radius:8px;font-size:.85rem;line-height:1.6;text-align:center;white-space:pre-line;opacity:0;transition:opacity .3s,transform .3s;z-index:2000;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 footer{background:#0f2236;color:var(--white)}
-.footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px;padding:56px 5% 40px;border-bottom:1px solid rgba(255,255,255,.07)}
+.footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding:56px 5% 40px;border-bottom:1px solid rgba(255,255,255,.07)}
 .footer-brand img{height:46px;width:auto;margin-bottom:14px}
 .footer-brand p{font-size:.8rem;color:rgba(255,255,255,.47);line-height:1.9;margin-bottom:18px}
 .social-links{display:flex;gap:8px}
@@ -223,67 +151,24 @@ footer{background:#0f2236;color:var(--white)}
 .footer-bottom-links{display:flex;gap:16px}
 .footer-bottom-links a{color:rgba(255,255,255,.27);transition:color .2s}
 .footer-bottom-links a:hover{color:rgba(255,255,255,.6)}
-
-/* ── BACK TO TOP ── */
-#backTop{
-  position:fixed;bottom:30px;right:26px;
-  width:46px;height:46px;
-  background:var(--blue-mid);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;
-  opacity:0;transform:translateY(16px);
-  transition:opacity .3s,transform .3s,background .3s;
-  z-index:800;
-}
+#backTop{position:fixed;bottom:30px;right:26px;width:46px;height:46px;background:var(--blue-mid);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(16px);transition:opacity .3s,transform .3s,background .3s;z-index:800}
 #backTop.visible{opacity:1;transform:none}
 #backTop:hover{background:var(--blue-dark)}
 #backTop svg{width:20px;height:20px;stroke:var(--white);fill:none;stroke-width:2.5;display:block}
-
 .fade-in{opacity:0;transform:translateY(22px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
 .fade-in.visible{opacity:1;transform:none}
+@media(max-width:960px){.nav-links{gap:14px}}
+@media(max-width:900px){.hospital-grid{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr 1fr;gap:28px}}
+@media(max-width:768px){:root{--nav:64px}.nav-search-wrap,.nav-links,.nav-lang,.nav-home-btn{display:none}.hamburger{display:flex}.fixed-footer-cta{display:flex}.tab-section{top:64px}.footer-top{grid-template-columns:1fr;gap:26px;padding:40px 5% 28px}.footer-bottom{flex-direction:column;gap:9px;text-align:center}.footer-bottom-links{flex-wrap:wrap;justify-content:center;gap:12px}.wechat-box{gap:28px}.wechat-info{text-align:center}#backTop{bottom:74px;right:20px}.more-wrap{padding:0 4%}#moreSection{padding:26px 18px}.search-banner{width:calc(100% - 8%);margin:12px auto 0}}
 
-/* ── RESPONSIVE ── */
-@media(max-width:960px){
-  .nav-links{gap:14px}
-  .nav-search-wrap .nav-search-form{max-width:260px}
-}
-@media(max-width:900px){
-  .hospital-grid{grid-template-columns:1fr}
-  .footer-top{grid-template-columns:1.6fr 1fr 1fr;gap:28px}
-}
-@media(max-width:768px){
-  :root{--nav:64px}
-  .nav-search-wrap,.nav-links,.nav-lang,.nav-home-btn{display:none}
-  .hamburger{display:flex}
-  .fixed-footer-cta{display:flex}
-  .tab-section{top:64px}
-  .footer-top{grid-template-columns:1.6fr 1fr 1fr;gap:26px;padding:40px 5% 28px}
-  .footer-bottom{flex-direction:column;gap:9px;text-align:center}
-  .footer-bottom-links{flex-wrap:wrap;justify-content:center;gap:12px}
-  .wechat-box{gap:28px}
-  .wechat-info{text-align:center}
-  #backTop{bottom:74px;right:20px}
-  .more-wrap{padding:0 4%}
-  #moreSection{padding:26px 18px}
-  .search-banner{width:calc(100% - 8%);margin:12px auto 0}
-}
-
-/* ── TOAST ── */
-.toast{position:fixed;bottom:84px;left:50%;transform:translateX(-50%) translateY(20px);
-  background:rgba(26,58,92,.93);color:#fff;padding:12px 22px;border-radius:8px;
-  font-size:.85rem;line-height:1.6;text-align:center;white-space:pre-line;
-  opacity:0;transition:opacity .3s,transform .3s;z-index:2000;pointer-events:none}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-button.cta-wechat{flex:1;text-align:center;padding:11px 0;font-size:.84rem;font-weight:700;border-radius:4px;border:1.5px solid var(--blue-mid);cursor:pointer;background:var(--white);color:var(--blue-dark)}
+body{font-family:'Cormorant Garamond','Noto Sans JP',serif;color:var(--text);background:var(--white);overflow-x:hidden}
+.page-hero-title,.region-name,.hospital-name,.contact-title{font-family:"Cormorant Garamond",serif}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav id="navbar">
-  <a class="nav-logo" href="en_index.html">
-    <img src="../img/logo.jpg" alt="JAPAN MEDICAL INC."/>
-  </a>
+  <a class="nav-logo" href="../index.html"><img src="../img/logo.jpg" alt="JAPAN MEDICAL INC."/></a>
   <div class="nav-search-wrap">
     <form class="nav-search-form" onsubmit="doSearch(event)">
       <input class="nav-search-input" id="navInput" type="text" placeholder="Search institutions..." autocomplete="off"/>
@@ -291,14 +176,13 @@ button.cta-wechat{flex:1;text-align:center;padding:11px 0;font-size:.84rem;font-
     </form>
   </div>
   <div class="nav-right">
-    <ul class="nav-links"><li><a href="en_index.html">Home</a></li><li><a href="en_hospitals.html" class="active">Partner Institutions</a></li><li><a href="en_hospitals.html#contact">Contact Us</a></li></ul>
+    <ul class="nav-links"><li><a href="../index.html">Home</a></li><li><a href="en_hospitals.html" class="active">Partner Institutions</a></li><li><a href="en_hospitals.html#contact">Contact Us</a></li></ul>
     <div class="nav-lang"><a href="../hospitals.html">日本語</a><a href="en_hospitals.html" class="active">English</a><a href="../zh/zh_hospitals.html">中文</a></div>
-    <a href="en_index.html" class="nav-home-btn"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>Home</a>
+    <a href="../index.html" class="nav-home-btn"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>Home</a>
   </div>
   <div class="hamburger" id="hamburger" onclick="openMenu()"><span></span><span></span><span></span></div>
 </nav>
 
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" onclick="closeMenu()">&#x2715;</button>
   <div class="mob-search-wrap">
@@ -307,12 +191,11 @@ button.cta-wechat{flex:1;text-align:center;padding:11px 0;font-size:.84rem;font-
       <button class="mob-search-btn" type="submit"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
     </form>
   </div>
-  <a href="en_index.html" onclick="closeMenu()">Home</a>
+  <a href="../index.html" onclick="closeMenu()">Home</a>
   <a href="en_hospitals.html" onclick="closeMenu()">Partner Institutions</a><a href="en_hospitals.html#contact" onclick="closeMenu()">Contact Us</a>
   <div class="mobile-lang"><a href="../hospitals.html">日本語</a><a href="#">English</a><a href="../zh/zh_hospitals.html">中文</a></div>
 </div>
 
-<!-- PAGE HERO -->
 <div class="page-hero">
   <p class="page-hero-label">Partner Institutions</p>
   <h1 class="page-hero-title">Partner Medical Institutions</h1>
@@ -320,30 +203,27 @@ button.cta-wechat{flex:1;text-align:center;padding:11px 0;font-size:.84rem;font-
   <p class="page-hero-desc">Below are the key medical institutions partnered with JAPAN MEDICAL INC.<br>We work with many additional institutions — please contact us for more information.</p>
 </div>
 
-<!-- BREADCRUMB -->
-<div class="breadcrumb">
-  <a href="en_index.html">Home</a><span>›</span>Partner Medical Institutions
-</div>
+<div class="breadcrumb"><a href="../index.html">Home</a><span>›</span>Partner Medical Institutions</div>
 
-<!-- SEARCH RESULT BANNER -->
 <div class="search-banner" id="searchBanner">
   <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><span id="bannerText"></span>
   <span class="search-clear" onclick="clearSearch()">✕ Clear</span>
 </div>
 
-<!-- TABS -->
 <div class="tab-section">
   <div class="tabs">
     <button class="tab-btn active" onclick="filterRegion('all',this)">All</button>
-    <button class="tab-btn" onclick="filterRegion('tokyo',this)">Tokyo</button>
-    <button class="tab-btn" onclick="filterRegion('chiba',this)">Chiba</button>
+    <button class="tab-btn" onclick="filterRegion('general',this)">General</button>
+    <button class="tab-btn" onclick="filterRegion('regen',this)">Regenerative</button>
   </div>
 </div>
 
-<!-- HOSPITALS -->
 <div class="hospitals-wrap">
-  <div class="region-section fade-in" data-region="tokyo" id="tokyo">
-    <div class="region-header"><div class="region-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></div><div><h2 class="region-name">Tokyo</h2><p class="region-count">Key Partner Institutions</p></div></div>
+  <div class="region-section fade-in" data-region="general" id="general">
+    <div class="region-header">
+      <div class="region-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></div>
+      <div><h2 class="region-name">General</h2><p class="region-count">Key Partner Institutions</p></div>
+    </div>
     <div class="hospital-grid">
       <div class="hospital-card" data-name="The University of Tokyo Hospital">
         <h3 class="hospital-name">The University of Tokyo Hospital</h3>
@@ -415,11 +295,6 @@ button.cta-wechat{flex:1;text-align:center;padding:11px 0;font-size:.84rem;font-
         <div class="hospital-tags"><span class="hospital-tag">Immunotherapy</span><span class="hospital-tag">Cancer</span></div>
         <div class="hospital-footer"><a href="https://www.j-immunother.com/" target="_blank" class="hospital-site">Official Site <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
       </div>
-    </div>
-  </div>
-  <div class="region-section fade-in" data-region="chiba" id="chiba">
-    <div class="region-header"><div class="region-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></div><div><h2 class="region-name">Chiba Prefecture</h2><p class="region-count">Key Partner Institutions</p></div></div>
-    <div class="hospital-grid">
       <div class="hospital-card" data-name="Kameda Medical Center">
         <h3 class="hospital-name">Kameda Medical Center</h3>
         <p class="hospital-catch">One of Japan's largest and best-equipped general hospitals, providing advanced care to many international patients.</p>
@@ -457,9 +332,100 @@ button.cta-wechat{flex:1;text-align:center;padding:11px 0;font-size:.84rem;font-
       </div>
     </div>
   </div>
+  <div class="region-section fade-in" data-region="regen" id="regen">
+    <div class="region-header">
+      <div class="region-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></div>
+      <div><h2 class="region-name">Regenerative</h2><p class="region-count">Regenerative Medicine Clinics</p></div>
+    </div>
+    <div class="hospital-grid">
+      <div class="hospital-card" data-name="GINZA NOA CLINIC">
+        <h3 class="hospital-name">GINZA NOA CLINIC</h3>
+        <p class="hospital-catch">A specialized regenerative medicine clinic focusing on stem cell therapy and NK cell immunotherapy, equipped with an in-house cell processing center for regenerative medical services.</p>
+        <p class="hospital-addr"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>Royal Crystal Ginza 3F, 5-4-6 Ginza, Chuo-ku, Tokyo</p>
+        <div class="hospital-tags"><span class="hospital-tag">Stem Cell</span><span class="hospital-tag">NK Cell</span></div>
+        <div class="hospital-footer"><a href="https://www.ginza-noa-cl.jp/" target="_blank" class="hospital-site">Official Site <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+      </div>
+      <div class="hospital-card" data-name="Motoazabu Hills Clinic">
+        <h3 class="hospital-name">Motoazabu Hills Clinic</h3>
+        <p class="hospital-catch">A regenerative medicine clinic specializing in autologous adipose-derived stem cell therapy.</p>
+        <p class="hospital-addr"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>1-3-3 Motoazabu, Minato-ku, Tokyo</p>
+        <div class="hospital-tags"><span class="hospital-tag">Stem Cell</span><span class="hospital-tag">Comprehensive Immunotherapy</span></div>
+        <div class="hospital-footer"><a href="https://motoazabuhills-clinic.jp/" target="_blank" class="hospital-site">Official Site <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+      </div>
+      <div class="hospital-card" data-name="Reborn Clinic Ginza">
+        <h3 class="hospital-name">Reborn Clinic Ginza</h3>
+        <p class="hospital-catch">A clinic specializing in regenerative medicine and cell-based therapies.</p>
+        <p class="hospital-addr"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>10F, Ginza 1-chome Building, 1-15-4 Ginza, Chuo-ku, Tokyo</p>
+        <div class="hospital-tags"><span class="hospital-tag">Stem Cell</span><span class="hospital-tag">NK Cell</span></div>
+        <div class="hospital-footer"><a href="https://reborn-clinic.com/" target="_blank" class="hospital-site">Official Site <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+      </div>
+      <div class="hospital-card" data-name="Reborn Clinic Osaka">
+        <h3 class="hospital-name">Reborn Clinic Osaka</h3>
+        <p class="hospital-catch">A regenerative medicine clinic focused on high-quality stem cell culture technology.</p>
+        <p class="hospital-addr"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>2-2 Ofukacho, Kita-ku, Osaka</p>
+        <div class="hospital-tags"><span class="hospital-tag">Stem Cell</span><span class="hospital-tag">NK Cell</span></div>
+        <div class="hospital-footer"><a href="https://rebornclinic-osaka.com/" target="_blank" class="hospital-site">Official Site <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+      </div>
+      <div class="hospital-card" data-name="Kyushu Regenerative Medicine Center">
+        <h3 class="hospital-name">Kyushu Regenerative Medicine Center</h3>
+        <p class="hospital-catch">A comprehensive regenerative medicine center integrating clinical treatment, cell processing facilities, and rehabilitation programs.</p>
+        <p class="hospital-addr"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>3-4-10 Kashii Teruha, Higashi-ku, Fukuoka</p>
+        <div class="hospital-tags"><span class="hospital-tag">Stem Cell</span><span class="hospital-tag">NK Cell</span></div>
+        <div class="hospital-footer"><a href="https://kyusyusaiseiiryou.jp/" target="_blank" class="hospital-site">Official Site <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+      </div>
+      <div class="hospital-card" data-name="Motif Ginza Clinic">
+        <h3 class="hospital-name">Motif Ginza Clinic</h3>
+        <p class="hospital-catch">A regenerative medicine clinic specializing in autologous adipose-derived stem cell therapy.</p>
+        <p class="hospital-addr"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>4F Ginza Kawai Building, 1-7-6 Ginza, Chuo-ku, Tokyo</p>
+        <div class="hospital-tags"><span class="hospital-tag">Stem Cell</span><span class="hospital-tag">NK Cell</span></div>
+        <div class="hospital-footer"><a href="https://regenerative.motif-ginza.com/" target="_blank" class="hospital-site">Official Site <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+      </div>
+      <div class="hospital-card" data-name="Tokyo Relife Clinic">
+        <h3 class="hospital-name">Tokyo Relife Clinic</h3>
+        <p class="hospital-catch">A regenerative medicine clinic conducting joint research with the University of Tokyo.</p>
+        <p class="hospital-addr"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>6-8F Toraya Ginza Building, 7-8-17 Ginza, Chuo-ku, Tokyo</p>
+        <div class="hospital-tags"><span class="hospital-tag">Stem Cell</span><span class="hospital-tag">NK Cell</span></div>
+        <div class="hospital-footer"><a href="https://tokyo-relife.com/" target="_blank" class="hospital-site">Official Site <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+      </div>
+      <div class="hospital-card" data-name="Natural Harmony Clinic">
+        <h3 class="hospital-name">Natural Harmony Clinic</h3>
+        <p class="hospital-catch">A clinic specializing in cancer prevention programs combining early detection and regenerative medicine.</p>
+        <p class="hospital-addr"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>5F Jingumae Media Square Building, 6-25-14 Jingumae, Shibuya-ku, Tokyo</p>
+        <div class="hospital-tags"><span class="hospital-tag">Stem Cell</span><span class="hospital-tag">NK Cell</span></div>
+        <div class="hospital-footer"><a href="https://nhc-cancer.com/" target="_blank" class="hospital-site">Official Site <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+      </div>
+      <div class="hospital-card" data-name="IIT Clinic">
+        <h3 class="hospital-name">IIT Clinic</h3>
+        <p class="hospital-catch">A clinic specializing in ultra-early multi-cancer risk screening based on microRNA analysis.</p>
+        <p class="hospital-addr"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>1F Shinjuku International Building, 6-6-2 Nishi-Shinjuku, Shinjuku-ku, Tokyo</p>
+        <div class="hospital-tags"><span class="hospital-tag">Ultra-early Cancer Screening</span></div>
+        <div class="hospital-footer"><a href="https://iit-clinic.com/" target="_blank" class="hospital-site">Official Site <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+      </div>
+      <div class="hospital-card" data-name="Ginza Seiaiwa Clinic">
+        <h3 class="hospital-name">Ginza Seiaiwa Clinic</h3>
+        <p class="hospital-catch">A clinic specializing in regenerative medicine and anti-aging care using EXO stem cell extracts and immune cell therapy.</p>
+        <p class="hospital-addr"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>5-10-2 Ginza, Chuo-ku, Tokyo</p>
+        <div class="hospital-tags"><span class="hospital-tag">Comprehensive Immunotherapy</span></div>
+        <div class="hospital-footer"><a href="https://www.gsaw-clinic.jp/" target="_blank" class="hospital-site">Official Site <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+      </div>
+      <div class="hospital-card" data-name="GINZA YR CLINIC">
+        <h3 class="hospital-name">GINZA YR CLINIC</h3>
+        <p class="hospital-catch">A clinic providing personalized regenerative medicine combining stem cell therapy and immune cell therapy.</p>
+        <p class="hospital-addr"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>7F Css Building III, 6-5-13 Ginza, Chuo-ku, Tokyo</p>
+        <div class="hospital-tags"><span class="hospital-tag">Stem Cell</span><span class="hospital-tag">NK Cell</span></div>
+        <div class="hospital-footer"><a href="https://www.yrclinic.com/" target="_blank" class="hospital-site">Official Site <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+      </div>
+      <div class="hospital-card" data-name="N2 Clinic">
+        <h3 class="hospital-name">N2 Clinic</h3>
+        <p class="hospital-catch">A regenerative medicine clinic specializing in stem cell therapy and immune cell therapy under approved medical protocols in Japan.</p>
+        <p class="hospital-addr"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>6-6-5 Ginza, Chuo-ku, Tokyo</p>
+        <div class="hospital-tags"><span class="hospital-tag">Stem Cell</span><span class="hospital-tag">NK Cell</span></div>
+        <div class="hospital-footer"><a href="https://n2clinic-ginza.com/" target="_blank" class="hospital-site">Official Site <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- MORE -->
 <div class="more-wrap">
   <div id="moreSection" class="fade-in">
     <p id="moreText">We partner with many additional institutions beyond those listed here.<br>Please contact us regarding any specific hospital or treatment you are seeking.</p>
@@ -467,7 +433,6 @@ button.cta-wechat{flex:1;text-align:center;padding:11px 0;font-size:.84rem;font-
   </div>
 </div>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="contact-inner fade-in">
     <p class="contact-label">Contact Us</p>
@@ -477,9 +442,8 @@ button.cta-wechat{flex:1;text-align:center;padding:11px 0;font-size:.84rem;font-
     <div class="wechat-box">
       <div class="wechat-qr">
         <!--
-          QR: place ../img/wechat-qr.png (200x200px)
-          Replace placeholder below with:
-          <img src="../img/wechat-qr.png" class="wechat-qr-img" alt="WeChat QR"/>
+          QR: place ../img/wechat-qr.png (200×200px)
+          Replace below with: <img src="../img/wechat-qr.png" class="wechat-qr-img" alt="WeChat QR"/>
         -->
         <div class="wechat-qr-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="#2a6496" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><rect x="5" y="5" width="3" height="3" fill="#2a6496" opacity=".3"></rect><rect x="16" y="5" width="3" height="3" fill="#2a6496" opacity=".3"></rect><rect x="5" y="16" width="3" height="3" fill="#2a6496" opacity=".3"></rect></svg><p>wechat-qr.png<br>200×200px</p></div>
         <p class="wechat-qr-label">Scan to add on WeChat</p>
@@ -493,10 +457,9 @@ button.cta-wechat{flex:1;text-align:center;padding:11px 0;font-size:.84rem;font-
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-top">
-<div class="footer-brand">
+    <div class="footer-brand">
       <img src="../img/logo.jpg" alt="JAPAN MEDICAL INC."/>
       <p>A premier medical solutions provider<br>delivering Japan's finest healthcare to the world.</p>
       <div class="social-links">
@@ -505,51 +468,47 @@ button.cta-wechat{flex:1;text-align:center;padding:11px 0;font-size:.84rem;font-
         <a href="#"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
       </div>
     </div>
-        
-    <div class="footer-col"><h4>Services</h4><ul>
-      <li><a href="en_index.html">Global Healthcare Network</a></li>
-      <li><a href="en_index.html#services">Elevated Healthcare Experience</a></li>
-      <li><a href="en_index.html#services">One-Stop Medical Journey</a></li>
-      <li><a href="en_index.html#services">Regenerative Medicine & Advanced Therapies</a></li>
-      <li><a href="en_index.html#services">Comprehensive Health Management</a></li>
-      <li><a href="en_index.html#services">Personalized Medical Concierge</a></li>
+        <div class="footer-col"><h4>Services</h4><ul>
+      <li><a href="../index.html#services">Global Healthcare Network</a></li>
+      <li><a href="../index.html#services">Elevated Healthcare Experience</a></li>
+      <li><a href="../index.html#services">One-Stop Medical Journey</a></li>
+      <li><a href="../index.html#services">Regenerative Medicine & Advanced Therapies</a></li>
+      <li><a href="../index.html#services">Comprehensive Health Management</a></li>
+      <li><a href="../index.html#services">Personalized Medical Concierge</a></li>
     </ul></div>
-    <div class="footer-col"><h4>How It Works</h4><ul>
-      <li><a href="en_index.html#flow">Get in Touch</a></li>
-      <li><a href="en_index.html#flow">Appointment Coordination</a></li>
-      <li><a href="en_index.html#flow">Travel Preparation</a></li>
-      <li><a href="en_index.html#flow">Treatment & Follow-up</a></li>
+        <div class="footer-col"><h4>How It Works</h4><ul>
+      <li><a href="../index.html#flow">Get in Touch</a></li>
+      <li><a href="../index.html#flow">Appointment Coordination</a></li>
+      <li><a href="../index.html#flow">Travel Preparation</a></li>
+      <li><a href="../index.html#flow">Treatment & Follow-up</a></li>
     </ul></div>
-    <div class="footer-col"><h4>Company</h4><ul>
-      <li><a href="en_index.html#about">About Us</a></li>
+        <div class="footer-col"><h4>Company</h4><ul>
+      <li><a href="../index.html#about">About Us</a></li>
     </ul></div>
   </div>
-    <div class="footer-bottom">
+  <div class="footer-bottom">
     <p>© 2026 JAPAN MEDICAL INC. All Rights Reserved.</p>
+    <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Sitemap</a></div>
   </div>
 </footer>
 
-<!-- MOBILE FOOTER CTA -->
 <div class="fixed-footer-cta">
   <a href="#contact" class="cta-contact">Contact Us</a>
-  <a href="#" class="cta-wechat" onclick="copyWechat();return false;">WeChat</a>
+  <button class="cta-wechat" onclick="copyWechat()">WeChat</button>
 </div>
 
-<!-- BACK TO TOP -->
-<div id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
-</div>
+<div id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg></div>
 
 <script>
-/* ── constants ── */
 const MORE_DEFAULT = 'We partner with many additional institutions beyond those listed here.<br>Please contact us regarding any specific hospital or treatment you are seeking.';
 const BTN_DEFAULT  = 'Get in Touch';
-const MORE_MISS    = 'The institution was not found on this page. Try searching in another language or contact us.';
+const MORE_MISS    = 'The institution you searched for was not found on this page.<br>Try searching in another language or contact us for assistance.';
 const BTN_MISS     = 'Institution not found — please contact us';
 const HIT_TPL      = 'Result for "{q}": {name}';
 const MISS_TPL     = '"{q}" was not found on this page';
+const WECHAT_ID    = 'JapanMedical_Inc';
+const COPIED_MSG   = 'WeChat ID copied!\\nPlease add us as a friend!';
 
-/* ── navbar scroll ── */
 const navbar = document.getElementById('navbar');
 const backTop = document.getElementById('backTop');
 window.addEventListener('scroll', () => {
@@ -557,11 +516,9 @@ window.addEventListener('scroll', () => {
   backTop.classList.toggle('visible', window.scrollY > 420);
 });
 
-/* ── hamburger ── */
 function openMenu()  { document.getElementById('hamburger').classList.add('open'); document.getElementById('mobileMenu').classList.add('open'); document.body.style.overflow='hidden'; }
 function closeMenu() { document.getElementById('hamburger').classList.remove('open'); document.getElementById('mobileMenu').classList.remove('open'); document.body.style.overflow=''; }
 
-/* ── tab filter ── */
 function filterRegion(region, btn) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -570,7 +527,6 @@ function filterRegion(region, btn) {
   });
 }
 
-/* ── search ── */
 function doSearch(e) {
   e.preventDefault();
   const q = (document.getElementById('navInput').value || document.getElementById('mobInput').value || '').trim();
@@ -579,15 +535,13 @@ function doSearch(e) {
 }
 
 function runSearch(q) {
-  /* clear previous */
   document.querySelectorAll('.hospital-card.hit').forEach(c => c.classList.remove('hit'));
-  const ms  = document.getElementById('moreSection');
-  const mt  = document.getElementById('moreText');
-  const mb  = document.getElementById('moreBtn');
+  const ms = document.getElementById('moreSection');
+  const mt = document.getElementById('moreText');
+  const mb = document.getElementById('moreBtn');
   ms.classList.remove('miss'); mb.classList.remove('miss');
   mt.innerHTML = MORE_DEFAULT; mb.textContent = BTN_DEFAULT; mb.href = '#contact';
 
-  /* exact match only */
   let hit = null;
   document.querySelectorAll('.hospital-card').forEach(c => {
     if (!hit && (c.dataset.name || '') === q) hit = c;
@@ -598,7 +552,6 @@ function runSearch(q) {
   banner.classList.add('show');
 
   if (hit) {
-    /* make card visible (show all tabs) */
     document.querySelectorAll('.tab-btn')[0].click();
     hit.classList.add('hit');
     bannerText.textContent = HIT_TPL.replace('{q}', q).replace('{name}', hit.dataset.name);
@@ -613,7 +566,6 @@ function runSearch(q) {
     mt.innerHTML = MORE_MISS;
     mb.textContent = BTN_MISS;
     mb.classList.add('miss');
-    mb.href = '#contact';
     setTimeout(() => {
       const top = ms.getBoundingClientRect().top + window.scrollY
                   - parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav')) - 24;
@@ -627,68 +579,40 @@ function clearSearch() {
   document.querySelectorAll('.hospital-card.hit').forEach(c => c.classList.remove('hit'));
   document.getElementById('searchBanner').classList.remove('show');
   const ms = document.getElementById('moreSection');
-  const mt = document.getElementById('moreText');
+  ms.classList.remove('miss');
+  document.getElementById('moreText').innerHTML = MORE_DEFAULT;
   const mb = document.getElementById('moreBtn');
-  ms.classList.remove('miss'); mb.classList.remove('miss');
-  mt.innerHTML = MORE_DEFAULT; mb.textContent = BTN_DEFAULT;
+  mb.textContent = BTN_DEFAULT; mb.classList.remove('miss');
 }
 
-/* ── handle ?q= on load ── */
+function copyWechat() {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(WECHAT_ID).then(() => showToast(COPIED_MSG)).catch(() => fallbackCopy());
+  } else { fallbackCopy(); }
+}
+function fallbackCopy() {
+  const ta = document.createElement('textarea');
+  ta.value = WECHAT_ID; ta.style.cssText = 'position:fixed;opacity:0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); showToast(COPIED_MSG); } catch(e) {}
+  document.body.removeChild(ta);
+}
+function showToast(msg) {
+  let t = document.getElementById('jmi-toast');
+  if (!t) { t = document.createElement('div'); t.id = 'jmi-toast'; t.className = 'toast'; document.body.appendChild(t); }
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   const q = new URLSearchParams(window.location.search).get('q');
   if (q) { document.getElementById('navInput').value = q; runSearch(q); }
 });
 
-/* ── fade-in observer ── */
 const io = new IntersectionObserver(es => {
   es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
 }, { threshold: .1 });
 document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
-
-/* ── WeChat copy ── */
-JapanMedical_Inc
-function fallbackCopy(text, msg) {
-  const ta = document.createElement('textarea');
-  ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
-  document.body.appendChild(ta); ta.select();
-  try { document.execCommand('copy'); showToast(msg); } catch(e) { showToast('WeChat: ' + text); }
-  document.body.removeChild(ta);
-}
-function showToast(msg) {
-  let t = document.getElementById('wechatToast');
-  if (!t) {
-    t = document.createElement('div');
-    t.id = 'wechatToast';
-    t.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(26,58,92,.95);color:#fff;padding:14px 22px;border-radius:8px;font-size:.88rem;line-height:1.7;text-align:center;z-index:9999;opacity:0;transition:opacity .3s,transform .3s;max-width:280px;white-space:pre-line;box-shadow:0 4px 20px rgba(0,0,0,.25);';
-    document.body.appendChild(t);
-  }
-  t.textContent = msg;
-  t.style.opacity = '1'; t.style.transform = 'translateX(-50%) translateY(0)';
-  clearTimeout(t._timer);
-  t._timer = setTimeout(() => {
-    t.style.opacity = '0'; t.style.transform = 'translateX(-50%) translateY(20px)';
-  }, 3000);
-}
-
-function copyWechat() {
-  const id = 'JapanMedical_Inc';
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(id).then(() => showToast('WeChat ID copied!\nPlease add us as a friend!')).catch(() => fallbackCopy(id));
-  } else { fallbackCopy(id); }
-}
-function fallbackCopy(text) {
-  const ta = document.createElement('textarea');
-  ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
-  document.body.appendChild(ta); ta.select();
-  try { document.execCommand('copy'); showToast('WeChat ID copied!\nPlease add us as a friend!'); } catch(e) {}
-  document.body.removeChild(ta);
-}
-function showToast(msg) {
-  let t = document.getElementById('wechatToast');
-  if (!t) { t = document.createElement('div'); t.id = 'wechatToast'; t.className = 'toast'; document.body.appendChild(t); }
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2800);
-}
 </script>
 </body>
 </html>
