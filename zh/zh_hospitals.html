@@ -168,7 +168,7 @@ body{font-family:'Noto Sans SC',sans-serif;color:var(--text);background:var(--wh
 <body>
 
 <nav id="navbar">
-  <a class="nav-logo" href="../index.html"><img src="../img/logo.jpg" alt="JAPAN MEDICAL INC."/></a>
+  <a class="nav-logo" href="zh_index.html"><img src="../img/logo.jpg" alt="JAPAN MEDICAL INC."/></a>
   <div class="nav-search-wrap">
     <form class="nav-search-form" onsubmit="doSearch(event)">
       <input class="nav-search-input" id="navInput" type="text" placeholder="搜索医疗机构..." autocomplete="off"/>
@@ -176,9 +176,9 @@ body{font-family:'Noto Sans SC',sans-serif;color:var(--text);background:var(--wh
     </form>
   </div>
   <div class="nav-right">
-    <ul class="nav-links"><li><a href="../index.html">首页</a></li><li><a href="zh_hospitals.html" class="active">合作医疗机构</a></li><li><a href="zh_hospitals.html#contact">联系我们</a></li></ul>
+    <ul class="nav-links"><li><a href="zh_index.html">首页</a></li><li><a href="zh_hospitals.html" class="active">合作医疗机构</a></li><li><a href="zh_hospitals.html#contact">联系我们</a></li></ul>
     <div class="nav-lang"><a href="../hospitals.html">日本語</a><a href="../en/en_hospitals.html">English</a><a href="zh_hospitals.html" class="active">中文</a></div>
-    <a href="../index.html" class="nav-home-btn"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>首页</a>
+    <a href="zh_index.html" class="nav-home-btn"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>首页</a>
   </div>
   <div class="hamburger" id="hamburger" onclick="openMenu()"><span></span><span></span><span></span></div>
 </nav>
@@ -191,9 +191,9 @@ body{font-family:'Noto Sans SC',sans-serif;color:var(--text);background:var(--wh
       <button class="mob-search-btn" type="submit"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
     </form>
   </div>
-  <a href="../index.html" onclick="closeMenu()">首页</a>
+  <a href="zh_index.html" onclick="closeMenu()">首页</a>
   <a href="zh_hospitals.html" onclick="closeMenu()">合作医疗机构</a><a href="zh_hospitals.html#contact" onclick="closeMenu()">联系我们</a>
-  <div class="mobile-lang"><a href="../hospitals.html">日本語</a><a href="../en/en_hospitals.html">English</a><a href="#">中文</a></div>
+  <div class="mobile-lang"><a href="../hospitals.html">日本語</a><a href="../en/en_hospitals.html">English</a></div>
 </div>
 
 <div class="page-hero">
@@ -203,7 +203,7 @@ body{font-family:'Noto Sans SC',sans-serif;color:var(--text);background:var(--wh
   <p class="page-hero-desc">以下为 JAPAN MEDICAL INC. 主要合作医疗机构。<br>如需了解未列出的医疗机构，欢迎随时与我们联系咨询。</p>
 </div>
 
-<div class="breadcrumb"><a href="../index.html">首页</a><span>›</span>合作医疗机构一览</div>
+<div class="breadcrumb"><a href="zh_index.html">首页</a><span>›</span>合作医疗机构一览</div>
 
 <div class="search-banner" id="searchBanner">
   <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><span id="bannerText"></span>
@@ -500,7 +500,8 @@ body{font-family:'Noto Sans SC',sans-serif;color:var(--text);background:var(--wh
           QR: place ../img/wechat-qr.png (200×200px)
           Replace below with: <img src="../img/wechat-qr.png" class="wechat-qr-img" alt="WeChat QR"/>
         -->
-        <div class="wechat-qr-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="#2a6496" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><rect x="5" y="5" width="3" height="3" fill="#2a6496" opacity=".3"></rect><rect x="16" y="5" width="3" height="3" fill="#2a6496" opacity=".3"></rect><rect x="5" y="16" width="3" height="3" fill="#2a6496" opacity=".3"></rect></svg><p>wechat-qr.png<br>200×200px</p></div>
+        <img src="../img/wechat-qr.png" class="wechat-qr-img" alt="WeChat QR"/>  
+        <!-- <div class="wechat-qr-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="#2a6496" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><rect x="5" y="5" width="3" height="3" fill="#2a6496" opacity=".3"></rect><rect x="16" y="5" width="3" height="3" fill="#2a6496" opacity=".3"></rect><rect x="5" y="16" width="3" height="3" fill="#2a6496" opacity=".3"></rect></svg><p>wechat-qr.png<br>200×200px</p></div> -->
         <p class="wechat-qr-label">扫码添加微信</p>
       </div>
       <div class="wechat-info">
@@ -524,21 +525,21 @@ body{font-family:'Noto Sans SC',sans-serif;color:var(--text);background:var(--wh
       </div>
     </div>
         <div class="footer-col"><h4>服务项目</h4><ul>
-      <li><a href="../index.html#services">全球医疗服务网络</a></li>
-      <li><a href="../index.html#services">全面升级的医疗体验</a></li>
-      <li><a href="../index.html#services">一站式医疗服务</a></li>
-      <li><a href="../index.html#services">再生医学与前沿医疗</a></li>
-      <li><a href="../index.html#services">健康管理与高端体检</a></li>
-      <li><a href="../index.html#services">私人定制医疗服务</a></li>
+      <li><a href="zh_index.html#services">全球医疗服务网络</a></li>
+      <li><a href="zh_index.html#services">全面升级的医疗体验</a></li>
+      <li><a href="zh_index.html#services">一站式医疗服务</a></li>
+      <li><a href="zh_index.html#services">再生医学与前沿医疗</a></li>
+      <li><a href="zh_index.html#services">健康管理与高端体检</a></li>
+      <li><a href="zh_index.html#services">私人定制医疗服务</a></li>
     </ul></div>
         <div class="footer-col"><h4>服务流程</h4><ul>
-      <li><a href="../index.html#flow">提交咨询</a></li>
-      <li><a href="../index.html#flow">协调就诊安排</a></li>
-      <li><a href="../index.html#flow">赴日准备</a></li>
-      <li><a href="../index.html#flow">就诊与归国随访</a></li>
+      <li><a href="zh_index.html#flow">提交咨询</a></li>
+      <li><a href="zh_index.html#flow">协调就诊安排</a></li>
+      <li><a href="zh_index.html#flow">赴日准备</a></li>
+      <li><a href="zh_index.html#flow">就诊与归国随访</a></li>
     </ul></div>
         <div class="footer-col"><h4>公司信息</h4><ul>
-      <li><a href="../index.html#about">关于我们</a></li>
+      <li><a href="zh_index.html#about">关于我们</a></li>
     </ul></div>
   </div>
   <div class="footer-bottom">
@@ -562,7 +563,7 @@ const BTN_MISS     = '搜索医院在当前页面没有找到，建议联系我�
 const HIT_TPL      = '搜索「{q}」结果：找到 {name}';
 const MISS_TPL     = '「{q}」在当前页面没有找到';
 const WECHAT_ID    = 'JapanMedical_Inc';
-const COPIED_MSG   = '微信号已复制！\\n请去添加好友！';
+const COPIED_MSG   = '微信号已复制！\n请去添加好友！';
 
 const navbar = document.getElementById('navbar');
 const backTop = document.getElementById('backTop');
